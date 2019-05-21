@@ -1,14 +1,18 @@
 const http = require('http');
 const express = require('express');
 const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const eventsChallengeRouter = require('./routes/eventsChallenge.js');
 
-const hostname = 'localhost';
-const port = 3000;
+const hostname = '0.0.0.0';
+const port = 80;
 
 const app = express();
-app.use(morgan('dev'));
 
+app.use(morgan('dev'));
+app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
+app.use('/slack/action-endpoint', eventsChallengeRouter);
 
 app.use((req, res, next) => {
   console.log(req.headers);
@@ -17,6 +21,7 @@ app.use((req, res, next) => {
   res.end('<html><body><h1>This is an Express Server</h1></body></html>');
 
 });
+
 
 const server = http.createServer(app);
 
