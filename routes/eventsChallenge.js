@@ -5,6 +5,9 @@ const eventsChallengeRouter = express.Router();
 
 eventsChallengeRouter.route('/')
 .all((req,res,next) => {
+	console.log('------ req ----');
+	console.log(req.body);
+	console.log("---------");
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
     next();
@@ -13,8 +16,7 @@ eventsChallengeRouter.route('/')
     res.end('Will send all the dishes to you!');
 })
 .post((req, res, next) => {
-    res.setHeader(req.body.challenge);
-    res.end();
+    res.send(req.body.challenge);
 })
 .put((req, res, next) => {
     res.statusCode = 403;
