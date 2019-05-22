@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
-const env = require('./config.js')
+const env = require('./../config.js')
 
 const eventsChallengeRouter = express.Router();
 
