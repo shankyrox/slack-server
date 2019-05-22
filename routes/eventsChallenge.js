@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
+const env = require('./config.js')
 
 const eventsChallengeRouter = express.Router();
 
@@ -18,7 +19,7 @@ eventsChallengeRouter.route('/')
     if(req.body.type === "url_verfication")
         res.setHeader(req.body.challenge);
     else if (req.body.event.type === "app_mention" || (req.body.event.type === "message" && req.body.event.subtype != "bot_message")) {
-        var token = '';
+        var token = env.bot_token;
         var userid = req.body.event.user;
         var channelid = req.body.event.channel;
         var text = `Hello <@${userid}>! How you doin' ?`;

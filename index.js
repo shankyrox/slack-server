@@ -22,7 +22,6 @@ app.use((req, res, next) => {
 
 });
 
-
 const server = http.createServer(app);
 
 server.listen(port, hostname, () => {
